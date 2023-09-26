@@ -45,20 +45,30 @@ class TaskDetails:
 
 # Sample usage:
 
-# Create a User object
-user1 = User(1, "user123", "password123", "user123@email.com")
+# Create a User object with user input
+user_id = int(input("Enter User ID: "))
+username = input("Enter Username: ")
+password = input("Enter Password: ")
+email = input("Enter Email: ")
+user1 = User(user_id, username, password, email)
 
-# Create a Task object
-task1 = Task(1, 1, "Finish project report")
+# Create a Task object with user input
+task_id = int(input("Enter Task ID: "))
+task_description = input("Enter Task Description: ")
+task1 = Task(task_id, user_id, task_description)
 
-# Create a TaskStatus object
-task_status1 = TaskStatus(1, "In Progress")
+# Create a TaskStatus object with user input
+status = input("Enter Task Status: ")
+task_status1 = TaskStatus(task_id, status)
 
-# Create a TaskDetails object
-task_details1 = TaskDetails(1, "2023-10-15", "Medium", "No")
+# Create a TaskDetails object with user input
+due_date = input("Enter Due Date: ")
+priority = input("Enter Priority: ")
+archived = input("Enter Archived (Yes/No): ")
+task_details1 = TaskDetails(task_id, due_date, priority, archived)
 
 # Display User information
-print("User Information:")
+print("\nUser Information:")
 print(f"User ID: {user1.user_id}")
 print(f"Username: {user1.username}")
 print(f"Hashed Password: {user1.password}")
