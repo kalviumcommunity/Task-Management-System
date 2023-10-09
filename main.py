@@ -71,7 +71,6 @@ task_details1 = TaskDetails(task_id, due_date, priority, archived)
 print("\nUser Information:")
 print(f"User ID: {user1.user_id}")
 print(f"Username: {user1.username}")
-print(f"Hashed Password: {user1.password}")
 print(f"Email: {user1.email}")
 
 # Display Task information
