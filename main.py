@@ -7,22 +7,26 @@ class User:
     def __init__(self, user_id, username, password, email):
         self.user_id = user_id
         self.username = username
-        self.salt = self.generate_salt()  # Generate a salt for this user
-        self.password = self.hash_password(password)  # Hash the password using the salt
+        self.__salt = self.__generate_salt()  # Make salt private
+        self.__password = self.__hash_password(password)  # Make password private
         self.email = email
 
-    def hash_password(self, password):
-        # Hash the password using the user's salt
-        salted_password = password.encode() + self.salt
+    def __hash_password(self, password):  # Make hash_password private
+        salted_password = password.encode() + self.__salt
         hashed_password = hashlib.sha256(salted_password).hexdigest()
         return hashed_password
 
-    def generate_salt(self, length=16):
-        # Generate a random salt as bytes
+    def __generate_salt(self, length=16):  # Make generate_salt private
         salt_bytes = os.urandom(length)
         return salt_bytes
 
-# Define the Task class
+    def get_user_info(self):  # Provide an abstraction to access user info
+        return {
+            "User ID": self.user_id,
+            "Username": self.username,
+            "Email": self.email
+        }
+
 class Task:
     def __init__(self, task_id, user_id, task_description):
         self.task_id = task_id
@@ -69,10 +73,9 @@ task_details1 = TaskDetails(task_id, due_date, priority, archived)
 
 # Display User information
 print("\nUser Information:")
-print(f"User ID: {user1.user_id}")
-print(f"Username: {user1.username}")
-print(f"Hashed Password: {user1.password}")
-print(f"Email: {user1.email}")
+user_info = user1.get_user_info()
+for key, value in user_info.items():
+    print(f"{key}: {value}")
 
 # Display Task information
 print("\nTask Information:")
