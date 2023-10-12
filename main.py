@@ -77,6 +77,7 @@ user_info = user1.get_user_info()
 for key, value in user_info.items():
     print(f"{key}: {value}")
 
+
 # Display Task information
 print("\nTask Information:")
 print(f"Task ID: {task1.task_id}")
