@@ -3,7 +3,6 @@
 -- Create the database
 CREATE DATABASE TaskManagementDB;
 
--- Use the created database
 USE TaskManagementDB;
 
 -- Create the User table
@@ -62,3 +61,5 @@ VALUES (1, 'todo');
 UPDATE Task_status
 SET status = 'in progress'
 WHERE task_id = 1;
+);
+
