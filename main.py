@@ -56,20 +56,36 @@ password = input("Enter Password: ")
 email = input("Enter Email: ")
 user1 = User(user_id, username, password, email)
 
-# Create a Task object with user input
-task_id = int(input("Enter Task ID: "))
-task_description = input("Enter Task Description: ")
-task1 = Task(task_id, user_id, task_description)
+# Create an array to store Task objects
+tasks = []
 
-# Create a TaskStatus object with user input
-status = input("Enter Task Status: ")
-task_status1 = TaskStatus(task_id, status)
+# Create multiple Task objects with user input
+num_tasks = int(input("Enter the number of tasks: "))
+for _ in range(num_tasks):
+    task_id = int(input("Enter Task ID: "))
+    task_description = input("Enter Task Description: ")
+    task = Task(task_id, user_id, task_description)
+    tasks.append(task)
 
-# Create a TaskDetails object with user input
-due_date = input("Enter Due Date: ")
-priority = input("Enter Priority: ")
-archived = input("Enter Archived (Yes/No): ")
-task_details1 = TaskDetails(task_id, due_date, priority, archived)
+# Create an array to store TaskStatus objects
+task_statuses = []
+
+# Create multiple TaskStatus objects with user input
+for task in tasks:
+    status = input(f"Enter Task Status for Task ID {task.task_id}: ")
+    task_status = TaskStatus(task.task_id, status)
+    task_statuses.append(task_status)
+
+# Create an array to store TaskDetails objects
+task_details_list = []
+
+# Create multiple TaskDetails objects with user input
+for task in tasks:
+    due_date = input(f"Enter Due Date for Task ID {task.task_id}: ")
+    priority = input(f"Enter Priority for Task ID {task.task_id}: ")
+    archived = input(f"Enter Archived (Yes/No) for Task ID {task.task_id}: ")
+    task_details = TaskDetails(task.task_id, due_date, priority, archived)
+    task_details_list.append(task_details)
 
 # Display User information
 print("\nUser Information:")
@@ -77,21 +93,23 @@ user_info = user1.get_user_info()
 for key, value in user_info.items():
     print(f"{key}: {value}")
 
-
-# Display Task information
+# Display Task information for each task in the array
 print("\nTask Information:")
-print(f"Task ID: {task1.task_id}")
-print(f"User ID: {task1.user_id}")
-print(f"Task Description: {task1.task_description}")
+for task in tasks:
+    print(f"Task ID: {task.task_id}")
+    print(f"User ID: {task.user_id}")
+    print(f"Task Description: {task.task_description}")
 
-# Display TaskStatus information
+# Display TaskStatus information for each task in the array
 print("\nTask Status Information:")
-print(f"Task ID: {task_status1.task_id}")
-print(f"Status: {task_status1.status}")
+for task_status in task_statuses:
+    print(f"Task ID: {task_status.task_id}")
+    print(f"Status: {task_status.status}")
 
-# Display TaskDetails information
+# Display TaskDetails information for each task in the array
 print("\nTask Details Information:")
-print(f"Task ID: {task_details1.task_id}")
-print(f"Due Date: {task_details1.due_date}")
-print(f"Priority: {task_details1.priority}")
-print(f"Archived: {task_details1.archived}")
+for task_details in task_details_list:
+    print(f"Task ID: {task_details.task_id}")
+    print(f"Due Date: {task_details.due_date}")
+    print(f"Priority: {task_details.priority}")
+    print(f"Archived: {task_details.archived}")
